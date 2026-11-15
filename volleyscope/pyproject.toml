@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "volleyscope"
+version = "0.1.0"
+description = "Offline volleyball match analysis from a single camera"
+requires-python = ">=3.10"
+dependencies = ["numpy", "opencv-python", "scipy", "pyyaml", "matplotlib", "reportlab"]
+
+[project.optional-dependencies]
+torch = ["torch", "torchvision"]
+ocr = ["pytesseract"]
+dev = ["pytest"]
+
+[project.scripts]
+vball = "vball.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["vball*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = ["slow: end-to-end tests on rendered clips"]
